@@ -1,4 +1,5 @@
-function Navbar() {
+function Navbar({temp_query, setQuery}) 
+{
   return (
     <div className="flex p-4 px-5 mb-9 items-center bg-slate-900 text-white justify-between">
       <div className="flex gap-2">
@@ -13,7 +14,9 @@ function Navbar() {
         <input
           type="text"
           placeholder="Search"
-          className="border-0 p-2 px-4 rounded-lg focus:outline-slate-800 text-slate-90 w-80"
+          className="border-0 p-2 px-4 rounded-lg focus:outline-slate-800 w-80 text-gray-800"  // Adjusted text color and background
+          value={temp_query}
+          onChange={(e) => setQuery(e.target.value)}
         />
         {/* <button className="">
           <svg
