@@ -21,21 +21,33 @@ const demo = [
 ];
 function App() {
   const [books, setBooks] = useState([]);
-  const [query, setQuery] = useState("python");
+  const [isLoading, setIsLoading] = useState(true);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
+    const controller = new AbortController();
     async function fetch_book() {
-      const res = await fetch(`https://www.dbooks.org/api/search/${query}`);
+      setIsLoading(true);
+      const res = await fetch(
+        `https://www.dbooks.org/api/search/${query}`,
+        controller.signal
+      );
       const data = await res.json();
       setBooks(data.books);
+      setIsLoading(false);
+
+      return () => {
+        controller.abort();
+      };
     }
+    if (query.length < 3) return;
     fetch_book();
   }, [query]);
   return (
     <>
       <div className="h-screen w-screen">
-        <Navbar temp_query={query} setQuery={setQuery}></Navbar>
-        {books && <Sections books={books} />}
+        <Navbar query={query} setQuery={setQuery} />
+        <Sections books={books} isLoading={isLoading} />
       </div>
     </>
   );
