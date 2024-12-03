@@ -1,6 +1,7 @@
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar"
 import Sections from "./components/Sections";
-const books = [
+import { useEffect, useState } from "react";
+const demo = [
   {
     id: "5635349929",
     title: "Beginning Excel 2019",
@@ -18,12 +19,28 @@ const books = [
     url: "https://www.dbooks.org/building-democracy-for-all-5635417475/",
   },
 ];
-function App() {
+function App() 
+{
+  const [books, setBooks] = useState([]);
+  const [temp_query, setQuery] = useState("");
+
+  useEffect(()=>{
+      async function fetch_book()
+      {
+         const res = await fetch(`https://www.dbooks.org/api/search/${temp_query}`);
+         const data = await res.json();
+         setBooks(data.books);
+      }
+      fetch_book();
+      
+      
+
+  },[temp_query])
   return (
     <>
       <div className="h-screen w-screen">
-        <Navbar />
-        <Sections books={books} />
+        <Navbar temp_query = {temp_query} setQuery = {setQuery}></Navbar>
+        {books &&  <Sections books={books} />}
       </div>
     </>
   );
