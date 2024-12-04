@@ -1,4 +1,4 @@
-function Navbar({ query, setQuery }) {
+function Navbar({ query, setQuery ,countBooks }) {
   return (
     <div className="flex p-4 px-5 items-center bg-nav-900 text-white justify-between rounded-lg w-full">
       <div className="flex gap-2">
@@ -24,7 +24,7 @@ function Navbar({ query, setQuery }) {
           </svg>
         </button> */}
       </div>
-      <div>Found 0 results</div>
+      <div>Found {countBooks} results</div>
     </div>
   );
 }
