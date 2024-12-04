@@ -9,13 +9,14 @@ function BookDetails({ id }) {
     async function fetchData() {
       setIsLoading(true);
       const res = await fetch(`https://www.dbooks.org/api/book/${id}`);
-      console.log(res);
+  
       if (!res.ok) {
         setIsLoading(false);
         setData(null);
         return;
       }
       const data = await res.json();
+       console.log(data);
       setData(data);
       setIsLoading(false);
     }
