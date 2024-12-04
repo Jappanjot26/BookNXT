@@ -4,11 +4,11 @@ import Loading from "./Loading";
 
 function Sections({ books, isLoading }) {
   return (
-    <div className="flex p-4 justify-center gap-6 h-full pb-24 w-5/6">
-      <div className="bg-section-900 w-2/6 h-full overflow-scroll rounded-md">
+    <div className="flex p-4 justify-center gap-6 h-full w-5/6 mt-5">
+      <div className="bg-section-900 w-2/6 h-full max-h-[36rem] overflow-scroll rounded-md">
         {isLoading ? <Loading /> : <BooksList books={books} />}
       </div>
-      <div className="bg-section-900 w-2/6 h-full rounded-md">
+      <div className="bg-section-900 w-2/6 h-full max-h-[36rem] rounded-md">
         <BookDetails />
       </div>
     </div>

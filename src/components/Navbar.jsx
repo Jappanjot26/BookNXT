@@ -1,6 +1,6 @@
 function Navbar({ query, setQuery }) {
   return (
-    <div className="flex p-4 px-5 mb-5 items-center bg-nav-900 text-white justify-between  rounded-lg w-full">
+    <div className="flex p-4 px-5 items-center bg-nav-900 text-white justify-between rounded-lg w-full">
       <div className="flex gap-2">
         <div className="text-lg">📕</div>
         <div className="self-center text-xl">BookNXT</div>

@@ -28,7 +28,7 @@ function App() {
   }, [query]);
   return (
     <>
-      <div className="h-screen w-screen bg-background p-5 flex flex-col items-center">
+      <div className="h-screen w-screen bg-background p-5 flex flex-col items-center overflow-hidden">
         <Navbar query={query} setQuery={setQuery} />
         <Sections books={books} isLoading={isLoading} />
       </div>
