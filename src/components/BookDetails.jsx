@@ -1,48 +1,60 @@
-const data = [
-  {
-    status: "ok",
-    id: "1503212300",
-    title: "Invent Your Own Computer Games with Python",
-    subtitle: "A beginner's guide to computer programming in Python",
-    description:
-      "Invent Your Own Computer Games with Python teaches you how to program in the Python language...",
-    authors: "Al Sweigart",
-    publisher: "CreateSpace",
-    pages: "367",
-    year: "2015",
-    image: "https://www.dbooks.org/img/books/1503212300s.jpg",
-    url: "https://www.dbooks.org/invent-your-own-computer-games-with-python-1503212300/",
-    download:
-      "https://www.dbooks.org/d/1503212300-1635507922-39943ccf97e71c6e/",
-  },
-];
+import { useEffect, useState } from "react";
+import Loading from "./Loading";
 
-function BookDetails() {
+function BookDetails({ id }) {
+  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      setIsLoading(true);
+      const res = await fetch(`https://www.dbooks.org/api/book/${id}`);
+      console.log(res);
+      if (!res.ok) {
+        setIsLoading(false);
+        setData(null);
+        return;
+      }
+      const data = await res.json();
+      setData(data);
+      setIsLoading(false);
+    }
+
+    if (id === 0) return;
+    fetchData();
+  }, [id]);
+
+  if (isLoading) return <Loading />;
+  if (!data)
+    return (
+      <div className="flex justify-center items-center h-full">
+        <div className="text-white text-lg bg-red-500 p-4 rounded-md">
+          Something went wrong...
+        </div>
+      </div>
+    );
+
   return (
     <div>
       <div className="flex gap-4 p-4 text-white">
-        <img
-          src={data[0].image}
-          alt={data[0].title}
-          className="h-48 w-48 border-2"
-        />
+        <img src={data.image} alt={data.title} className="h-48 w-48 border-2" />
         <div className="flex flex-col gap-1">
-          <div className="text-xl">{data[0].title}</div>
-          <div className="text-base">{data[0].authors}</div>
+          <div className="text-xl">{data.title}</div>
+          <div className="text-base">{data.authors}</div>
         </div>
       </div>
-      <div className="p-4 text-white">{data[0].description}</div>
+      <div className="p-4 text-white">{data.description}</div>
       <div className="p-4 text-white">
-        Publisher : {data[0].publisher} <br />
-        Pages : {data[0].pages} <br />
-        Year : {data[0].year}
+        Publisher: {data.publisher} <br />
+        Pages: {data.pages} <br />
+        Year: {data.year}
       </div>
       <div className="p-4 text-white flex justify-center">
         <a
-          href={data[0].download}
+          href={data.download}
           target="_blank"
           rel="noreferrer"
-          className="text-slate-900 border-2 border-white p-2 rounded-lg hover:bg-grey-200  bg-white"
+          className="text-slate-900 border-2 border-white p-2 rounded-lg hover:bg-grey-200 bg-white"
         >
           Download
         </a>

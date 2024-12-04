@@ -9,7 +9,7 @@ function Sections({ books, isLoading }) {
         {isLoading ? <Loading /> : <BooksList books={books} />}
       </div>
       <div className="bg-section-900 w-2/6 h-full max-h-[36rem] rounded-md">
-        <BookDetails />
+        <BookDetails id={1503212300} />
       </div>
     </div>
   );
