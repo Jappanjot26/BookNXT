@@ -9,9 +9,11 @@ function Sections({ books, isLoading, error_message})
   return (
     <div className="flex p-4 justify-center gap-6 h-full w-5/6 mt-5">
       <div className="bg-section-900 w-2/6 h-full max-h-[36rem] overflow-scroll rounded-md">
+       
         {isLoading && <Loading />}
         {!error_message && <BooksList books={books}  setSelectId={setSelectId}/>}
         {<ErrorComp err={error_message}></ErrorComp>}
+      
       </div>
       <div className="bg-section-900 w-2/6 h-full max-h-[36rem] rounded-md">
         <BookDetails id={selectId} />

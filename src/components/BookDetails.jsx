@@ -16,7 +16,6 @@ function BookDetails({ id }) {
         return;
       }
       const data = await res.json();
-       console.log(data);
       setData(data);
       setIsLoading(false);
     }

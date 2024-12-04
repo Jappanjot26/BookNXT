@@ -15,7 +15,8 @@ function App() {
     if (query.length < 3) return;
     const controller = new AbortController();
 
-    async function fetch_book() {
+    async function fetch_book() 
+    {
       try {
         setErrorMessage("")
         setIsLoading(true);
@@ -28,14 +29,15 @@ function App() {
                throw new Error("Something went wrong")
           }
         const data = await res.json();
-        console.log(data);
-
+          
         setBooks(data.books || []); 
         setCountBooks(data.books?.length || 0); 
         setLength(data.books?.length > 0);  
         if(data.status !== 'ok')throw new Error("Book not found")
           
-        
+          return () => {
+            controller.abort(); 
+          };
       } 
       catch (err) 
       {
@@ -48,6 +50,7 @@ function App() {
       finally {
         setIsLoading(false);
       }
+
     }
 
     if(query.length<=3)
@@ -60,9 +63,7 @@ function App() {
 
     fetch_book();
 
-    return () => {
-      controller.abort(); 
-    };
+    
   }, [query]);
 
   return (

@@ -1,8 +1,9 @@
-export default function({err})
-{
-   return  <div className="flex p-4 justify-center gap-6 h-full w-5/6 mt-5">
-   <div className="bg-section-900 w-2/6 h-full max-h-[36rem] overflow-scroll rounded-md">
-      <h3>{err}</h3>
-   </div>
- </div>
+export default function ErrorComp({ err }) {
+  return (
+    <div className="flex items-center justify-center h-full w-full">
+      <div className="bg-red-800 text-white rounded-md p-6 shadow-lg max-w-md w-full text-center animate-fade-in">
+        <h3 className="text-xl font-bold mb-2">{err}</h3>
+      </div>
+    </div>
+  );
 }
