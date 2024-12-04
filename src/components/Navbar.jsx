@@ -1,6 +1,6 @@
 function Navbar({ query, setQuery }) {
   return (
-    <div className="flex p-4 px-5 mb-9 items-center bg-slate-900 text-white justify-between">
+    <div className="flex p-4 px-5 mb-5 items-center bg-nav-900 text-white justify-between  rounded-lg w-full">
       <div className="flex gap-2">
         <div className="text-lg">📕</div>
         <div className="self-center text-xl">BookNXT</div>
@@ -9,7 +9,7 @@ function Navbar({ query, setQuery }) {
         <input
           type="text"
           placeholder="Search"
-          className="border-0 p-2 px-4 rounded-lg focus:outline-slate-800 w-80 text-gray-800"
+          className="border-0 p-2 px-4 rounded-lg focus:outline-none focus:-translate-y-0.5 transition ease-in-out delay-150 w-80 text-gray-800 bg-nav-700 text-white shadow-lg"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
