@@ -5,8 +5,8 @@ function SavedBook({ book }) {
       <div className="flex flex-col gap-2 w-full">
         <h1 className="text-base font-semibold">{book.title}</h1>
         <div className="flex gap-4 w-full items-center">
-          <span className="w-1/3">⭐ 9.20</span>
-          <span className="w-1/3">📄 150</span>
+          <span className="w-1/3">⭐ {book.rating}</span>
+          <span className="w-1/3">📄 {book.pages}</span>
           <button className="flex w-1/3 justify-end">
             <svg
               xmlns="http://www.w3.org/2000/svg"

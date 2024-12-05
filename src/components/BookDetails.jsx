@@ -8,6 +8,10 @@ function BookDetails({ id, setSelectId })
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const[userRating, setUserRating] = useState("");
+  const [finallRating, setFinallRating] = useState(0);
+  const [finallPage, setPage] = useState(0);
+
+
   const [watched, setWatched] = useState([{
     id: "5635349929",
     title: "Beginning Excel 2019",
@@ -43,10 +47,12 @@ function BookDetails({ id, setSelectId })
         image:data.image,
         url: data.url,
         pages:data.pages,
-        raintg:userRating,
+        rating:userRating,
     };
     setWatched([...watched, newWatch]);
-    
+    setPage((Number(data.pages) + Number(finallPage)));
+    setFinallRating(Math.ceil  ((Number(finallRating) + Number(userRating)) / watched.length));
+
   }
 
   useEffect(() => {
@@ -70,7 +76,9 @@ function BookDetails({ id, setSelectId })
   }, [id]);
 
   if (isLoading) return <Loading />;
-  if (!id || id === 0) return <SavedList watched = {watched}/>;
+  if (!id || id === 0) return <SavedList watched={watched} 
+                               finallPage={finallPage} 
+                               finallRating={finallRating}/>;
   if (!data)
     return (
       <div className="flex justify-center items-center h-full">
