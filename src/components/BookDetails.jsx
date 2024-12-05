@@ -27,6 +27,7 @@ function BookDetails({ id, setSelectId })
     setWatched([...watched, newWatch]);
     setPage((Number(data.pages) + Number(finallPage)));
     setFinallRating(Math.ceil  ((Number(finallRating) + Number(userRating)) / watched.length));
+    setSelectId(0)
 
   }
   function removeBook(id)
