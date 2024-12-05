@@ -2,7 +2,7 @@
 import { useState } from "react";
 import SavedBook from "./SavedBook";
 
-function SavedList({watched, finallRating, finallPage}) 
+function SavedList({watched, finallRating, finallPage, removeBook}) 
 {
    return (
     <>
@@ -18,7 +18,7 @@ function SavedList({watched, finallRating, finallPage})
         </div>
       </div>
       {watched.map((book) => (
-        <SavedBook key={book.id} book={book}/>
+        <SavedBook key={book.id} book={book} removeBook = {removeBook}/>
       ))}
     </>
   );

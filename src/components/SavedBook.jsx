@@ -1,4 +1,4 @@
-function SavedBook({ book }) {
+function SavedBook({ book, removeBook}) {
   return (
     <div className="text-white border-b-2  border-translucent m-2 px-4 pt-2 pb-4 flex gap-5">
       <img src={book.image} alt={book.title} className="h-18 w-12" />
@@ -7,7 +7,7 @@ function SavedBook({ book }) {
         <div className="flex gap-4 w-full items-center">
           <span className="w-1/3">⭐ {book.rating}</span>
           <span className="w-1/3">📄 {book.pages}</span>
-          <button className="flex w-1/3 justify-end">
+          <button className="flex w-1/3 justify-end" onClick={()=>removeBook(book.id)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
