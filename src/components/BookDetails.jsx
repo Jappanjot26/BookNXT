@@ -6,6 +6,7 @@ import SavedList from "./SavedList";
 function BookDetails({ id, setSelectId }) {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const[userRating, setUserRating] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -21,6 +22,7 @@ function BookDetails({ id, setSelectId }) {
       const data = await res.json();
       setData(data);
       setIsLoading(false);
+      setUserRating("");
     }
 
     fetchData();
@@ -77,7 +79,8 @@ function BookDetails({ id, setSelectId }) {
       </div>
       <div className="p-4 text-white">{data.description}</div>
       <div className="text-white bg-section-200 my-2 mx-6 py-3 px-4 rounded-md flex flex-col items-center">
-        <Rating size={28} />
+        <Rating size={28}  onSetRating={setUserRating}/>
+        {userRating > 0 &&(<button className="text-slate-900 border-2 border-white py-2 px-6 rounded-lg hover:bg-grey-200 bg-white hover:-translate-y-0.5 drop-shadow-xl transition ease-in-out delay-150 shadow-white text-center">+ Add to List</button>)}
         <div className="p-4 text-white flex justify-center gap-4">
           <a
             href={data.download}

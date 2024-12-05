@@ -39,7 +39,9 @@ export default function Rating({
     fontSize: `${size / 1.5}px`,
   };
 
-  function handleRating(rating) {
+  function handleRating(rating) 
+  {
+    console.log(rating);
     setRating(rating);
     onSetRating(rating);
   }
