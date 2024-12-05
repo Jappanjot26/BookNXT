@@ -16,8 +16,8 @@ function Sections({ books, isLoading, error_message }) {
         {<ErrorComp err={error_message}></ErrorComp>}
       </div>
       <div className="bg-section-900 w-2/6 h-full max-h-[36rem] rounded-md">
-        {/* <BookDetails id={selectId} /> */}
-        <SavedList />
+        <BookDetails id={selectId} />
+        {/* <SavedList /> */}
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
+import Rating from "./Rating";
 
 function BookDetails({ id }) {
   const [data, setData] = useState({});
@@ -9,7 +10,7 @@ function BookDetails({ id }) {
     async function fetchData() {
       setIsLoading(true);
       const res = await fetch(`https://www.dbooks.org/api/book/${id}`);
-  
+
       if (!res.ok) {
         setIsLoading(false);
         setData(null);
@@ -48,7 +49,7 @@ function BookDetails({ id }) {
         </button>
       </div>
       <div className="flex gap-4 p-4 text-white">
-        <img src={data.image} alt={data.title} className="h-48 w-48 border-2" />
+        <img src={data.image} alt={data.title} className="h-48 w-36 border-2" />
         <div className="flex flex-col gap-2">
           <div className="text-lg">{data.title}</div>
           <div className="text-base">{data.authors}</div>
@@ -73,16 +74,26 @@ function BookDetails({ id }) {
         </div>
       </div>
       <div className="p-4 text-white">{data.description}</div>
-
-      <div className="p-4 text-white flex justify-center">
-        <a
-          href={data.download}
-          target="_blank"
-          rel="noreferrer"
-          className="text-slate-900 border-2 border-white py-2 px-6 rounded-lg hover:bg-grey-200 bg-white hover:-translate-y-0.5 drop-shadow-xl transition ease-in-out delay-150 shadow-white"
-        >
-          Download
-        </a>
+      <div className="text-white bg-section-200 my-2 mx-6 py-3 px-4 rounded-md flex flex-col items-center">
+        <Rating size={28} />
+        <div className="p-4 text-white flex justify-center gap-4">
+          <a
+            href={data.download}
+            target="_blank"
+            rel="noreferrer"
+            className="text-slate-900 border-2 border-white py-2 px-6 rounded-lg hover:bg-grey-200 bg-white hover:-translate-y-0.5 drop-shadow-xl transition ease-in-out delay-150 shadow-white"
+          >
+            Download
+          </a>
+          <a
+            href={`${data.url}pdf`}
+            target="_blank"
+            rel="noreferrer"
+            className="text-slate-900 border-2 border-white py-2 px-6 rounded-lg hover:bg-grey-200 bg-white hover:-translate-y-0.5 drop-shadow-xl transition ease-in-out delay-150 shadow-white text-center"
+          >
+            Read Now
+          </a>
+        </div>
       </div>
     </div>
   );
