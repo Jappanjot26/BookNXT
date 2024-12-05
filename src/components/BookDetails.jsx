@@ -3,37 +3,35 @@ import Loading from "./Loading";
 import Rating from "./Rating";
 import SavedList from "./SavedList";
 
-function BookDetails({ id, setSelectId }) 
-{
+function BookDetails({ id, setSelectId }) {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const[userRating, setUserRating] = useState("");
+  const [userRating, setUserRating] = useState("");
   const [finallRating, setFinallRating] = useState(0);
   const [finallPage, setPage] = useState(0);
   const [watched, setWatched] = useState([]);
 
-    function addWatch(data)
-    {
-      const newWatch = {
-        id:data.id,
-        title: data.title,
-        subtitle: data.subtitle,
-        authors: data.authors,
-        image:data.image,
-        url: data.url,
-        pages:data.pages,
-        rating:userRating,
+  function addWatch(data) {
+    const newWatch = {
+      id: data.id,
+      title: data.title,
+      subtitle: data.subtitle,
+      authors: data.authors,
+      image: data.image,
+      url: data.url,
+      pages: data.pages,
+      rating: userRating,
     };
     setWatched([...watched, newWatch]);
-    setPage((Number(data.pages) + Number(finallPage)));
-    setFinallRating(Math.ceil  ((Number(finallRating) + Number(userRating)) / watched.length));
-    setSelectId(0)
-
+    setPage(Number(data.pages) + Number(finallPage));
+    setFinallRating(Number(finallRating) + Number(userRating));
+    setSelectId(0);
   }
-  function removeBook(id)
-  {
-     setWatched(watched => watched.filter(books=> books.id !== id));
-  } 
+  function removeBook(id) {
+    setFinallRating((r) => r - watched.find((book) => book.id === id).rating);
+    setPage((p) => p - watched.find((book) => book.id === id).pages);
+    setWatched((watched) => watched.filter((books) => books.id !== id));
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -56,10 +54,15 @@ function BookDetails({ id, setSelectId })
   }, [id]);
 
   if (isLoading) return <Loading />;
-  if (!id || id === 0) return <SavedList watched={watched} 
-                               finallPage={finallPage} 
-                               finallRating={finallRating}
-                               removeBook = {removeBook}/>
+  if (!id || id === 0)
+    return (
+      <SavedList
+        watched={watched}
+        finallPage={finallPage}
+        finallRating={finallRating}
+        removeBook={removeBook}
+      />
+    );
   if (!data)
     return (
       <div className="flex justify-center items-center h-full">
@@ -109,9 +112,15 @@ function BookDetails({ id, setSelectId })
       </div>
       <div className="p-4 text-white">{data.description}</div>
       <div className="text-white bg-section-200 my-2 mx-6 py-3 px-4 rounded-md flex flex-col items-center">
-        <Rating size={28}  onSetRating={setUserRating}/>
-        {userRating &&(<button className="text-slate-900 border-2 border-white py-2 px-6 rounded-lg hover:bg-grey-200 bg-white hover:-translate-y-0.5 drop-shadow-xl transition ease-in-out delay-150 shadow-white text-center"
-                            onClick={()=>addWatch(data)}>+ Add to List</button>)}
+        <Rating size={28} onSetRating={setUserRating} />
+        {userRating && (
+          <button
+            className="text-slate-900 border-2 border-white py-2 px-6 rounded-lg hover:bg-grey-200 bg-white hover:-translate-y-0.5 drop-shadow-xl transition ease-in-out delay-150 shadow-white text-center"
+            onClick={() => addWatch(data)}
+          >
+            + Add to List
+          </button>
+        )}
 
         <div className="p-4 text-white flex justify-center gap-4">
           <a
