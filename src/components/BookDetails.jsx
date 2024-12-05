@@ -3,10 +3,51 @@ import Loading from "./Loading";
 import Rating from "./Rating";
 import SavedList from "./SavedList";
 
-function BookDetails({ id, setSelectId }) {
+function BookDetails({ id, setSelectId }) 
+{
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const[userRating, setUserRating] = useState("");
+  const [watched, setWatched] = useState([{
+    id: "5635349929",
+    title: "Beginning Excel 2019",
+    subtitle: "",
+    authors: "Noreen Brown, Barbara Lave, Hallie Puncochar",
+    image: "https://www.dbooks.org/img/books/5635349929s.jpg",
+    url: "https://www.dbooks.org/beginning-excel-2019-5635349929/",
+  },
+  {
+    id: "5635417475",
+    title: "Building Democracy for All",
+    subtitle: "Interactive Explorations of Government and Civic Life",
+    authors: "Robert W. Maloy, Torrey Trust",
+    image: "https://www.dbooks.org/img/books/5635417475s.jpg",
+    url: "https://www.dbooks.org/building-democracy-for-all-5635417475/",
+  },
+  {
+    id: "3030523918",
+    title: "The Economics of Big Science",
+    subtitle: "Essays by Leading Scientists and Policymakers",
+    authors: "Hans\u00a0Peter\u00a0Beck, Panagiotis\u00a0Charitos",
+    image: "https://www.dbooks.org/img/books/3030523918s.jpg",
+    url: "https://www.dbooks.org/the-economics-of-big-science-3030523918/",
+  },]);
+
+    function addWatch(data)
+    {
+      const newWatch = {
+        id:data.id,
+        title: data.title,
+        subtitle: data.subtitle,
+        authors: data.authors,
+        image:data.image,
+        url: data.url,
+        pages:data.pages,
+        raintg:userRating,
+    };
+    setWatched([...watched, newWatch]);
+    
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -29,7 +70,7 @@ function BookDetails({ id, setSelectId }) {
   }, [id]);
 
   if (isLoading) return <Loading />;
-  if (!id || id === 0) return <SavedList />;
+  if (!id || id === 0) return <SavedList watched = {watched}/>;
   if (!data)
     return (
       <div className="flex justify-center items-center h-full">
@@ -80,7 +121,9 @@ function BookDetails({ id, setSelectId }) {
       <div className="p-4 text-white">{data.description}</div>
       <div className="text-white bg-section-200 my-2 mx-6 py-3 px-4 rounded-md flex flex-col items-center">
         <Rating size={28}  onSetRating={setUserRating}/>
-        {userRating > 0 &&(<button className="text-slate-900 border-2 border-white py-2 px-6 rounded-lg hover:bg-grey-200 bg-white hover:-translate-y-0.5 drop-shadow-xl transition ease-in-out delay-150 shadow-white text-center">+ Add to List</button>)}
+        {userRating &&(<button className="text-slate-900 border-2 border-white py-2 px-6 rounded-lg hover:bg-grey-200 bg-white hover:-translate-y-0.5 drop-shadow-xl transition ease-in-out delay-150 shadow-white text-center"
+                            onClick={()=>addWatch(data)}>+ Add to List</button>)}
+
         <div className="p-4 text-white flex justify-center gap-4">
           <a
             href={data.download}

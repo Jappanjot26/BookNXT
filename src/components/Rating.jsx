@@ -41,7 +41,6 @@ export default function Rating({
 
   function handleRating(rating) 
   {
-    console.log(rating);
     setRating(rating);
     onSetRating(rating);
   }
