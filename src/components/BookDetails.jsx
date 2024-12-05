@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
 import Rating from "./Rating";
+import SavedList from "./SavedList";
 
-function BookDetails({ id }) {
+function BookDetails({ id, setSelectId }) {
   const [data, setData] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
+      if (!id || id === 0) return;
       setIsLoading(true);
       const res = await fetch(`https://www.dbooks.org/api/book/${id}`);
 
@@ -21,11 +23,11 @@ function BookDetails({ id }) {
       setIsLoading(false);
     }
 
-    if (id === 0) return;
     fetchData();
   }, [id]);
 
   if (isLoading) return <Loading />;
+  if (!id || id === 0) return <SavedList />;
   if (!data)
     return (
       <div className="flex justify-center items-center h-full">
@@ -38,7 +40,7 @@ function BookDetails({ id }) {
   return (
     <div className="flex flex-col relative">
       <div className="text-white p-2 absolute drop-shadow-xl hover:-translate-x-0.5 shadow-white transition ease-in-out delay-150">
-        <button>
+        <button onClick={() => setSelectId(0)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 256 256"
