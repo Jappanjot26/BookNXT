@@ -29,6 +29,7 @@ export default function Rating({
   messages = [],
   defaultRating = 0,
   onSetRating,
+  onClick,
 }) {
   const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
@@ -39,14 +40,13 @@ export default function Rating({
     fontSize: `${size / 1.5}px`,
   };
 
-  function handleRating(rating) 
-  {
+  function handleRating(rating) {
     setRating(rating);
     onSetRating(rating);
   }
 
   return (
-    <div style={containerStyle} className={className}>
+    <div style={containerStyle} className={className} onClick={onClick}>
       <div style={starContainerStyle}>
         {Array.from({ length: maxRating }, (_, i) => (
           <Star

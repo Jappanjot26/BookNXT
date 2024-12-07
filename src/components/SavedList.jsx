@@ -4,7 +4,7 @@ import SavedBook from "./SavedBook";
 function SavedList({ watched, finallRating, finallPage, removeBook }) {
   return (
     <>
-      <div className="flex h-1/6 flex-col bg-section-200 drop-shadow-xl rounded-md py-4 px-5 gap-3 mb-4">
+      <div className="flex h-1/6 flex-col bg-section-200 drop-shadow-xl rounded-md py-4 px-5 gap-3 mb-4 z-0">
         <h3 className="text-white font-semibold uppercase text-base">
           Books you read
         </h3>
