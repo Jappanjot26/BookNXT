@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      backdropBlur: {
+        xs: "1px",
+      },
       backgroundColor: {
         background: "#212529",
         section: {
