@@ -27,9 +27,14 @@ function BookDetails({ id, setSelectId }) {
       rating: userRating,
       comment: userComment,
     };
-    setWatched([...watched, newWatch]);
-    setPage(Number(data.pages) + Number(finallPage));
-    setFinallRating(Number(finallRating) + Number(userRating));
+  
+    const duplicates = watched.filter((book) => book.id === data.id);
+  
+    if (duplicates.length === 0) {
+      setWatched([...watched, newWatch]);
+      setPage(Number(data.pages) + Number(finallPage));
+      setFinallRating(Number(finallRating) + Number(userRating));
+    } 
     setSelectId(0);
   }
   function removeBook(id) {
