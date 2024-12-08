@@ -1,13 +1,22 @@
-function SavedBook({ book, removeBook}) {
+function SavedBook({ book, removeBook, reOpen }) {
   return (
-    <div className="text-white border-b-2  border-translucent m-2 px-4 pt-2 pb-4 flex gap-5">
+    <div
+      className="text-white border-b-2 border-translucent m-2 px-4 pt-2 pb-4 flex gap-5"
+      onClick={() => reOpen(book.id)}
+    >
       <img src={book.image} alt={book.title} className="h-18 w-12" />
       <div className="flex flex-col gap-2 w-full">
         <h1 className="text-base font-semibold">{book.title}</h1>
         <div className="flex gap-4 w-full items-center">
           <span className="w-1/3">⭐ {book.rating}</span>
           <span className="w-1/3">📄 {book.pages}</span>
-          <button className="flex w-1/3 justify-end" onClick={()=>removeBook(book.id)}>
+          <button
+            className="flex w-1/3 justify-end"
+            onClick={(event) => {
+              event.stopPropagation(); // Prevent the event from reaching the parent div
+              removeBook(book.id);
+            }}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"

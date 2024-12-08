@@ -5,7 +5,7 @@ import Rating from "./Rating";
 import SavedList from "./SavedList";
 import { comment } from "postcss";
 
-function BookDetails({ id, setSelectId }) {
+function BookDetails({ id, setSelectId, reOpen}) {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState("");
@@ -78,6 +78,7 @@ function BookDetails({ id, setSelectId }) {
         finallPage={finallPage}
         finallRating={finallRating}
         removeBook={removeBook}
+        reOpen = {reOpen}
       />
     );
   if (!data)
