@@ -1,6 +1,6 @@
-import ErrorComp from "./components/ErrorComp";
-import Navbar from "./components/Navbar";
-import Sections from "./components/Sections";
+import ErrorComp from "./components/shared/ErrorComp";
+import Navbar from "./components/ui/Navbar";
+import Sections from "./components/ui/Sections";
 import { useEffect, useState } from "react";
 
 function App() {

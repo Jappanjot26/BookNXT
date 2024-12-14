@@ -1,7 +1,7 @@
 import { useState } from "react";
-import SavedBook from "./SavedBook";
+import SavedBook from "../saved/SavedBook";
 
-function SavedList({ watched, finallRating, finallPage, removeBook ,reOpen}) {
+function SavedList({ watched, finallRating, finallPage, removeBook, reOpen }) {
   return (
     <>
       <div className="flex h-1/6 flex-col bg-section-200 drop-shadow-xl rounded-md py-4 px-5 gap-3 mb-4 z-0">
@@ -27,7 +27,12 @@ function SavedList({ watched, finallRating, finallPage, removeBook ,reOpen}) {
       </div>
       <div className="h-5/6 overflow-scroll">
         {watched.map((book) => (
-          <SavedBook key={book.id} book={book} removeBook={removeBook} reOpen={reOpen}/>
+          <SavedBook
+            key={book.id}
+            book={book}
+            removeBook={removeBook}
+            reOpen={reOpen}
+          />
         ))}
       </div>
     </>

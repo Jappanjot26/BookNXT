@@ -1,16 +1,14 @@
-import BookDetails from "./BookDetails";
-import BooksList from "./BooksList";
-import ErrorComp from "./ErrorComp";
-import Loading from "./Loading";
+import BookDetails from "../book/BookDetails";
+import BooksList from "../book/BooksList";
+import ErrorComp from "../shared/ErrorComp";
+import Loading from "../shared/Loading";
 import RateAndComment from "./RateAndComment";
-import SavedList from "./SavedList";
+import SavedList from "../saved/SavedList";
 import { useState } from "react";
-function Sections({ books, isLoading, error_message }) 
-{
+function Sections({ books, isLoading, error_message }) {
   const [selectId, setSelectId] = useState(0);
-  function reOpen(id)
-  {
-     setSelectId(id);
+  function reOpen(id) {
+    setSelectId(id);
   }
 
   return (
@@ -29,7 +27,11 @@ function Sections({ books, isLoading, error_message })
           )}
         </div>
         <div className="bg-section-900 w-2/6 h-full max-h-[36rem] rounded-md">
-          <BookDetails id={selectId} setSelectId={setSelectId} reOpen = {reOpen} />
+          <BookDetails
+            id={selectId}
+            setSelectId={setSelectId}
+            reOpen={reOpen}
+          />
         </div>
       </div>
     </>

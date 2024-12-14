@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import Loading from "./Loading";
-import RateAndComment from "./RateAndComment";
-import Rating from "./Rating";
-import SavedList from "./SavedList";
+import Loading from "../shared/Loading";
+import RateAndComment from "../ui/RateAndComment";
+import Rating from "../shared/Rating";
+import SavedList from "../saved/SavedList";
 import { comment } from "postcss";
 
-function BookDetails({ id, setSelectId, reOpen}) {
+function BookDetails({ id, setSelectId, reOpen }) {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState("");
@@ -27,14 +27,14 @@ function BookDetails({ id, setSelectId, reOpen}) {
       rating: userRating,
       comment: userComment,
     };
-  
+
     const duplicates = watched.filter((book) => book.id === data.id);
-  
+
     if (duplicates.length === 0) {
       setWatched([...watched, newWatch]);
       setPage(Number(data.pages) + Number(finallPage));
       setFinallRating(Number(finallRating) + Number(userRating));
-    } 
+    }
     setSelectId(0);
   }
   function removeBook(id) {
@@ -78,7 +78,7 @@ function BookDetails({ id, setSelectId, reOpen}) {
         finallPage={finallPage}
         finallRating={finallRating}
         removeBook={removeBook}
-        reOpen = {reOpen}
+        reOpen={reOpen}
       />
     );
   if (!data)

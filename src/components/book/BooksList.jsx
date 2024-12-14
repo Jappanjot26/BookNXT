@@ -1,4 +1,4 @@
-import Book from "./Book";
+import Book from "../book/Book";
 function BooksList({ books, selectId, setSelectId }) {
   return (
     <div>
