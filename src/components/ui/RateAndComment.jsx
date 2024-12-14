@@ -33,7 +33,7 @@ function RateAndComment({
             <Rating
               size={28}
               onSetRating={onSetRating}
-              defaultRating={defaultRating}
+              defaultRating={Number(defaultRating)}
             />
           </div>
           <textarea

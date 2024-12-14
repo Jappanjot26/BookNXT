@@ -3,17 +3,18 @@ import Loading from "../shared/Loading";
 import RateAndComment from "../ui/RateAndComment";
 import Rating from "../shared/Rating";
 import SavedList from "../saved/SavedList";
-import { comment } from "postcss";
+import ErrorComp from "../shared/ErrorComp";
 
 function BookDetails({ id, setSelectId, reOpen }) {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [userRating, setUserRating] = useState("");
+  const [userRating, setUserRating] = useState(0);
   const [userComment, setComment] = useState("");
   const [finallRating, setFinallRating] = useState(0);
   const [finallPage, setPage] = useState(0);
   const [watched, setWatched] = useState([]);
   const [showRNC, setShowRNC] = useState(false);
+  const duplicates = watched.filter((book) => book.id === data.id);
 
   function addWatch(data) {
     const newWatch = {
@@ -24,14 +25,12 @@ function BookDetails({ id, setSelectId, reOpen }) {
       image: data.image,
       url: data.url,
       pages: data.pages,
-      rating: userRating,
+      rating: Number(userRating),
       comment: userComment,
     };
 
-    const duplicates = watched.filter((book) => book.id === data.id);
-
     if (duplicates.length === 0) {
-      setWatched([...watched, newWatch]);
+      setWatched((watched) => [...watched, newWatch]);
       setPage(Number(data.pages) + Number(finallPage));
       setFinallRating(Number(finallRating) + Number(userRating));
     }
@@ -47,7 +46,8 @@ function BookDetails({ id, setSelectId, reOpen }) {
     setShowRNC(true);
   }
   function submitRNC() {
-    addWatch(data);
+    if (duplicates.length === 0) addWatch(data);
+    setShowRNC(false);
   }
 
   useEffect(() => {
@@ -64,7 +64,7 @@ function BookDetails({ id, setSelectId, reOpen }) {
       const data = await res.json();
       setData(data);
       setIsLoading(false);
-      setUserRating("");
+      setUserRating(0);
     }
 
     fetchData();
@@ -81,14 +81,7 @@ function BookDetails({ id, setSelectId, reOpen }) {
         reOpen={reOpen}
       />
     );
-  if (!data)
-    return (
-      <div className="flex justify-center items-center h-full">
-        <div className="text-white text-lg bg-red-500 p-4 rounded-md">
-          Something went wrong...
-        </div>
-      </div>
-    );
+  if (!data) return <ErrorComp err="Book not found" />;
 
   return (
     <>
@@ -108,7 +101,7 @@ function BookDetails({ id, setSelectId, reOpen }) {
           <img
             src={data.image}
             alt={data.title}
-            className="h-48 w-36 border-2"
+            className="lg:h-48 lg:w-36 md:h-40 md:w-32"
           />
           <div className="flex flex-col gap-2">
             <div className="text-lg">{data.title}</div>
@@ -133,12 +126,15 @@ function BookDetails({ id, setSelectId, reOpen }) {
             </div>
           </div>
         </div>
-        <div className="p-4 text-white">{data.description}</div>
+        <div className="p-4 text-white">
+          {data.description ? data.description.split(".")[0] + "." : ""}
+        </div>
         <div className="text-white bg-section-200 my-2 mx-6 py-3 px-4 rounded-md flex flex-col items-center">
           <Rating
             size={28}
             onClick={handleRatingClick}
             onSetRating={setUserRating}
+            defaultRating={userRating}
           />
           <RateAndComment
             visible={showRNC}

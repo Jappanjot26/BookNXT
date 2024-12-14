@@ -15,8 +15,12 @@ function Book({ data, selectId, setSelectId }) {
       <div className="flex gap-4 p-4">
         <img src={data.image} alt={data.title} className="h-24 w-16 border-2" />
         <div className="flex flex-col gap-1">
-          <div className="text-xl">{data.title}</div>
-          <div className="text-base">{data.authors}</div>
+          <div className="xl:text-xl lg:text-lg md:text-lg">
+            {data.title.split(":")[0]}
+          </div>
+          <div className="xl:text-base text-gray-300 lg:text-md md:text-md">
+            {data.authors.split(",")[0]}
+          </div>
         </div>
       </div>
     </div>

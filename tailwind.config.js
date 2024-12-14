@@ -3,6 +3,11 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      screens: {
+        lg: "1024px",
+        xl: "1440px",
+        md: "768px",
+      },
       backdropBlur: {
         xs: "1px",
       },

@@ -4,7 +4,7 @@ function SavedBook({ book, removeBook, reOpen }) {
       className="text-white border-b-2 border-translucent m-2 px-4 pt-2 pb-4 flex gap-5"
       onClick={() => reOpen(book.id)}
     >
-      <img src={book.image} alt={book.title} className="h-18 w-12" />
+      <img src={book.image} alt={book.title} className="h-18 w-14" />
       <div className="flex flex-col gap-2 w-full">
         <h1 className="text-base font-semibold">{book.title}</h1>
         <div className="flex gap-4 w-full items-center">
