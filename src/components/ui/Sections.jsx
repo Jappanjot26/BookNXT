@@ -19,6 +19,10 @@ function Sections({ books, isLoading, error_message }) {
     testFub(id);
   }
 
+  function back(){
+    setTestPass(null);
+  }
+
   return (
     <>
       <div className="flex p-4 justify-center gap-6 h-full xl:w-4/6 mt-5 md:w-full md:px-0 lg:px-20 xl:px-4">
@@ -36,7 +40,11 @@ function Sections({ books, isLoading, error_message }) {
         </div>
         <div className="bg-section-900 xl:w-full h-full max-h-[36rem] rounded-md md:w-full">
           {testPass ? (
-             <SavedComp watched={watched} testPass={testPass}></SavedComp>
+             <SavedComp 
+             watched={watched} 
+             testPass={testPass}
+             back={back}
+             ></SavedComp>
           ) : (
             <BookDetails
             id={selectId}

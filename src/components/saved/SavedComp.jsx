@@ -1,13 +1,12 @@
 import React from "react"
 import Rating from "../shared/Rating"
 import RateAndComment from "../ui/RateAndComment"
-export default function SavedComp({watched,testPass})
+export default function SavedComp({watched,testPass, back})
 {
     return(<>
         <div className="flex flex-col relative">
         <div className="text-white p-2 absolute drop-shadow-xl hover:-translate-x-0.5 shadow-white transition ease-in-out delay-150">
-          <button > 
-          {/* onClick={() => setSelectId(0)} */}
+        <button onClick={back}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 256 256"
