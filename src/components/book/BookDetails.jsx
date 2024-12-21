@@ -16,7 +16,11 @@ function BookDetails({ id, setSelectId, reOpen, watched,  setWatched}) {
   const duplicates = watched.filter((book) => book.id === data.id);
 
   function addWatch(data) {
+    console.log(data)
     const newWatch = {
+      authors:data.authors,
+      publisher:data.publisher,
+      year:data.year,
       id: data.id,
       title: data.title,
       subtitle: data.subtitle,
@@ -26,6 +30,8 @@ function BookDetails({ id, setSelectId, reOpen, watched,  setWatched}) {
       pages: data.pages,
       rating: Number(userRating),
       comment: userComment,
+      description:data.description,
+      
     };
 
     if (duplicates.length === 0) {

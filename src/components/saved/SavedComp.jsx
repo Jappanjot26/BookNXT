@@ -53,14 +53,14 @@ export default function SavedComp({watched,testPass, back})
             size={28}
             // onClick={handleRatingClick}
             // onSetRating={setUserRating}
-            defaultRating={1}
+            defaultRating={testPass.rating}
           />
           <RateAndComment
             // visible={showRNC}
             // onClose={setShowRNC}
             // onSetRating={setUserRating}
             // defaultRating={userRating}
-            // defaultComment={userComment}
+            defaultComment={testPass.comment}
             // onSetComment={setComment}
             // submitRNC={submitRNC}
           />
