@@ -5,14 +5,13 @@ import Rating from "../shared/Rating";
 import SavedList from "../saved/SavedList";
 import ErrorComp from "../shared/ErrorComp";
 
-function BookDetails({ id, setSelectId, reOpen }) {
+function BookDetails({ id, setSelectId, reOpen, watched,  setWatched}) {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState(0);
   const [userComment, setComment] = useState("");
   const [finallRating, setFinallRating] = useState(0);
   const [finallPage, setPage] = useState(0);
-  const [watched, setWatched] = useState([]);
   const [showRNC, setShowRNC] = useState(false);
   const duplicates = watched.filter((book) => book.id === data.id);
 

@@ -1,13 +1,22 @@
+import { useState } from "react";
 import BookDetails from "../book/BookDetails";
 import BooksList from "../book/BooksList";
 import ErrorComp from "../shared/ErrorComp";
 import Loading from "../shared/Loading";
+import SavedComp from "../saved/SavedComp";
 
-import { useState } from "react";
 function Sections({ books, isLoading, error_message }) {
   const [selectId, setSelectId] = useState(0);
+  const [watched, setWatched] = useState([]);
+  const [testPass, setTestPass] = useState(null); // Initialize as null
+
+  function testFub(id) {
+    const match = watched.find((item) => item.id === id);
+    setTestPass(match); // Update with match or reset to null
+  }
+
   function reOpen(id) {
-    setSelectId(id);
+    testFub(id);
   }
 
   return (
@@ -26,11 +35,17 @@ function Sections({ books, isLoading, error_message }) {
           )}
         </div>
         <div className="bg-section-900 xl:w-full h-full max-h-[36rem] rounded-md md:w-full">
-          <BookDetails
+          {testPass ? (
+             <SavedComp watched={watched} testPass={testPass}></SavedComp>
+          ) : (
+            <BookDetails
             id={selectId}
             setSelectId={setSelectId}
             reOpen={reOpen}
+            watched={watched}
+            setWatched={setWatched}
           />
+          )}
         </div>
       </div>
     </>
