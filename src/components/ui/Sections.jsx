@@ -33,6 +33,7 @@ function Sections({ books, isLoading, error_message }) {
               books={books}
               selectId={selectId}
               setSelectId={setSelectId}
+              back={back}
             />
           ) : (
             <ErrorComp err={error_message}></ErrorComp>

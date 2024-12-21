@@ -1,8 +1,19 @@
 import React from "react"
+import { useState } from "react";
 import Rating from "../shared/Rating"
 import RateAndComment from "../ui/RateAndComment"
 export default function SavedComp({watched,testPass, back})
 {
+      const [userRating, setUserRating] = useState(0);
+      const [userComment, setComment] = useState("");
+      const [showRNC, setShowRNC] = useState(false);
+      function handleRatingClick() {
+        setShowRNC(true);
+      }
+      function submitRNC() {
+        if (duplicates.length === 0) addWatch(data);
+        setShowRNC(false);
+      }
     return(<>
         <div className="flex flex-col relative">
         <div className="text-white p-2 absolute drop-shadow-xl hover:-translate-x-0.5 shadow-white transition ease-in-out delay-150">
@@ -51,18 +62,18 @@ export default function SavedComp({watched,testPass, back})
         <div className="text-white bg-section-200 my-2 mx-6 py-3 px-4 rounded-md flex flex-col items-center">
           <Rating
             size={28}
-            // onClick={handleRatingClick}
-            // onSetRating={setUserRating}
+            onClick={handleRatingClick}
+            onSetRating={setUserRating}
             defaultRating={testPass.rating}
           />
           <RateAndComment
-            // visible={showRNC}
-            // onClose={setShowRNC}
-            // onSetRating={setUserRating}
-            // defaultRating={userRating}
+            visible={showRNC}
+            onClose={setShowRNC}
+            onSetRating={setUserRating}
+            defaultRating={userRating}
             defaultComment={testPass.comment}
-            // onSetComment={setComment}
-            // submitRNC={submitRNC}
+            onSetComment={setComment}
+            submitRNC={submitRNC}
           />
           <div className="p-4 text-white flex justify-center gap-4">
             <a

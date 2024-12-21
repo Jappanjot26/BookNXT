@@ -1,5 +1,5 @@
 import Book from "../book/Book";
-function BooksList({ books, selectId, setSelectId }) {
+function BooksList({ books, selectId, setSelectId, back}) {
   return (
     <div>
       {books &&
@@ -10,6 +10,7 @@ function BooksList({ books, selectId, setSelectId }) {
             key={book.id}
             selectId={selectId}
             setSelectId={setSelectId}
+            back={back}
           />
         ))}
     </div>

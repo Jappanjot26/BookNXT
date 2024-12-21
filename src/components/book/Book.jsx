@@ -1,10 +1,12 @@
-function Book({ data, selectId, setSelectId }) {
+function Book({ data, selectId, setSelectId, back}) {
   function handleClick(id) {
-    console.log("clicked " + id + " " + selectId);
-    if (id === selectId) {
+
+    if (id === selectId) 
+    {
       setSelectId(0);
     } else {
       setSelectId(id);
+      back()
     }
   }
   return (
