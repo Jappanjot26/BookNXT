@@ -8,11 +8,11 @@ import SavedComp from "../saved/SavedComp";
 function Sections({ books, isLoading, error_message }) {
   const [selectId, setSelectId] = useState(0);
   const [watched, setWatched] = useState([]);
-  const [testPass, setTestPass] = useState(null); // Initialize as null
+  const [singleSaveBook, setSingleSaveBook] = useState(null); // Initialize as null
 
   function testFub(id) {
     const match = watched.find((item) => item.id === id);
-    setTestPass(match); // Update with match or reset to null
+    setSingleSaveBook(match); // Update with match or reset to null
   }
 
   function reOpen(id) {
@@ -20,7 +20,7 @@ function Sections({ books, isLoading, error_message }) {
   }
 
   function back(){
-    setTestPass(null);
+    setSingleSaveBook(null);
   }
 
   return (
@@ -40,10 +40,10 @@ function Sections({ books, isLoading, error_message }) {
           )}
         </div>
         <div className="bg-section-900 xl:w-full h-full max-h-[36rem] rounded-md md:w-full">
-          {testPass ? (
+          {singleSaveBook ? (
              <SavedComp 
              watched={watched} 
-             testPass={testPass}
+             singleSaveBook={singleSaveBook}
              back={back}
              ></SavedComp>
           ) : (

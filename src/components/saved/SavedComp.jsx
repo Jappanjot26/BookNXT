@@ -2,7 +2,7 @@ import React from "react"
 import { useState } from "react";
 import Rating from "../shared/Rating"
 import RateAndComment from "../ui/RateAndComment"
-export default function SavedComp({watched,testPass, back})
+export default function SavedComp({watched,singleSaveBook, back})
 {
       const [userRating, setUserRating] = useState(0);
       const [userComment, setComment] = useState("");
@@ -29,27 +29,27 @@ export default function SavedComp({watched,testPass, back})
         </div>
         <div className="flex gap-4 p-4 text-white">
           <img
-            src={testPass.image}
-            alt={testPass.title}
+            src={singleSaveBook.image}
+            alt={singleSaveBook.title}
             className="lg:h-48 lg:w-36 md:h-40 md:w-32"
           />
           <div className="flex flex-col gap-2">
-            <div className="text-lg">{testPass.title}</div>
-            <div className="text-base">{testPass.authors}</div>
+            <div className="text-lg">{singleSaveBook.title}</div>
+            <div className="text-base">{singleSaveBook.authors}</div>
             <div className="text-sm text-white">
               <table className="table-auto w-full">
                 <tbody>
                   <tr>
                     <td>Publisher</td>
-                    <td>{testPass.publisher}</td>
+                    <td>{singleSaveBook.publisher}</td>
                   </tr>
                   <tr>
                     <td>Pages</td>
-                    <td>{testPass.pages}</td>
+                    <td>{singleSaveBook.pages}</td>
                   </tr>
                   <tr>
                     <td>Year</td>
-                    <td>{testPass.year}</td>
+                    <td>{singleSaveBook.year}</td>
                   </tr>
                 </tbody>
               </table>
@@ -57,27 +57,27 @@ export default function SavedComp({watched,testPass, back})
           </div>
         </div>
         <div className="p-4 text-white">
-          {testPass.description ? testPass.description.split(".")[0] + "." : ""}
+          {singleSaveBook.description ? singleSaveBook.description.split(".")[0] + "." : ""}
         </div>
         <div className="text-white bg-section-200 my-2 mx-6 py-3 px-4 rounded-md flex flex-col items-center">
           <Rating
             size={28}
             onClick={handleRatingClick}
             onSetRating={setUserRating}
-            defaultRating={testPass.rating}
+            defaultRating={singleSaveBook.rating}
           />
           <RateAndComment
             visible={showRNC}
             onClose={setShowRNC}
             onSetRating={setUserRating}
             defaultRating={userRating}
-            defaultComment={testPass.comment}
+            defaultComment={singleSaveBook.comment}
             onSetComment={setComment}
             submitRNC={submitRNC}
           />
           <div className="p-4 text-white flex justify-center gap-4">
             <a
-              href={testPass.download}
+              href={singleSaveBook.download}
               target="_blank"
               rel="noreferrer"
               className="text-slate-900 border-2 border-white py-2 px-6 rounded-lg hover:bg-grey-200 bg-white hover:-translate-y-0.5 drop-shadow-xl transition ease-in-out delay-150 shadow-white"
@@ -92,7 +92,7 @@ export default function SavedComp({watched,testPass, back})
               </svg>
             </a>
             <a
-              href={`${testPass.url}pdf`}
+              href={`${singleSaveBook.url}pdf`}
               target="_blank"
               rel="noreferrer"
               className="text-slate-900 border-2 border-white py-2 px-6 rounded-lg hover:bg-grey-200 bg-white hover:-translate-y-0.5 drop-shadow-xl transition ease-in-out delay-150 shadow-white text-center"
