@@ -2,16 +2,33 @@ import React from "react"
 import { useState } from "react";
 import Rating from "../shared/Rating"
 import RateAndComment from "../ui/RateAndComment"
-export default function SavedComp({watched,singleSaveBook, back})
+export default function SavedComp({watched,singleSaveBook, back, setWatched})
 {
-      const [userRating, setUserRating] = useState(0);
-      const [userComment, setComment] = useState("");
+      const [userRating, setUserRating] = useState(singleSaveBook.rating || 0);
+      const [userComment, setComment] = useState(singleSaveBook.comment);
       const [showRNC, setShowRNC] = useState(false);
+      
+      function addWatch(book) {
+        setWatched((prevWatched) => {
+          const bookIndex = prevWatched.findIndex(
+            (watchedBook) => watchedBook.id === book.id
+          );
+          const updatedWatched = [...prevWatched];
+          updatedWatched[bookIndex] = {
+            ...updatedWatched[bookIndex],
+            rating: Number(userRating),
+            comment: userComment,
+          };
+          return updatedWatched;
+        });
+      }
+      
+      
       function handleRatingClick() {
         setShowRNC(true);
       }
       function submitRNC() {
-        if (duplicates.length === 0) addWatch(data);
+          addWatch(singleSaveBook);
         setShowRNC(false);
       }
     return(<>
@@ -64,14 +81,14 @@ export default function SavedComp({watched,singleSaveBook, back})
             size={28}
             onClick={handleRatingClick}
             onSetRating={setUserRating}
-            defaultRating={singleSaveBook.rating}
+            defaultRating={userRating}
           />
           <RateAndComment
             visible={showRNC}
             onClose={setShowRNC}
             onSetRating={setUserRating}
             defaultRating={userRating}
-            defaultComment={singleSaveBook.comment}
+            defaultComment={userComment}
             onSetComment={setComment}
             submitRNC={submitRNC}
           />

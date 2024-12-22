@@ -42,7 +42,8 @@ function Sections({ books, isLoading, error_message }) {
         <div className="bg-section-900 xl:w-full h-full max-h-[36rem] rounded-md md:w-full">
           {singleSaveBook ? (
              <SavedComp 
-             watched={watched} 
+             watched={watched}
+             setWatched = {setWatched} 
              singleSaveBook={singleSaveBook}
              back={back}
              ></SavedComp>
