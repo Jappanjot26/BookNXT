@@ -19,6 +19,7 @@ export default function SavedComp({watched,singleSaveBook, back, setWatched})
             rating: Number(userRating),
             comment: userComment,
           };
+          back();
           return updatedWatched;
         });
       }

@@ -15,7 +15,8 @@ function BookDetails({ id, setSelectId, reOpen, watched,  setWatched}) {
   const [showRNC, setShowRNC] = useState(false);
   const duplicates = watched.filter((book) => book.id === data.id);
 
-  function addWatch(data) {
+  function addWatch(data) 
+  {
     const newWatch = {
       publisher:data.publisher,
       year:data.year,
@@ -37,6 +38,8 @@ function BookDetails({ id, setSelectId, reOpen, watched,  setWatched}) {
       setPage(Number(data.pages) + Number(finallPage));
       setFinallRating(Number(finallRating) + Number(userRating));
     }
+    setComment("");
+    setUserRating(0);
     setSelectId(0);
   }
   function removeBook(id) {
@@ -50,6 +53,8 @@ function BookDetails({ id, setSelectId, reOpen, watched,  setWatched}) {
   }
   function submitRNC() {
     if (duplicates.length === 0) addWatch(data);
+    setComment("");
+    setUserRating(0);
     setShowRNC(false);
   }
 
@@ -68,6 +73,7 @@ function BookDetails({ id, setSelectId, reOpen, watched,  setWatched}) {
       setData(data);
       setIsLoading(false);
       setUserRating(0);
+      setComment("");
     }
 
     fetchData();
