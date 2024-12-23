@@ -9,14 +9,13 @@ function SavedList({ watched, finallRating, finallPage, removeBook, reOpen }) {
           Books you read
         </h3>
         <div className="text-white flex gap-4 text-base justify-between pr-6 pb-2">
-          <div>#️⃣ {watched.length}  books</div>
+          <div>#️⃣ {watched.length} books</div>
           <div>
             ⭐{" "}
             {(watched.length === 0 ? 0 : finallRating / watched.length).toFixed(
               2
             )}
           </div>
-          <div>🗨️ 2</div>
           <div>
             📄
             {(watched.length === 0 ? 0 : finallPage / watched.length).toFixed(

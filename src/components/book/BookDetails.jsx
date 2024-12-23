@@ -87,7 +87,9 @@ function BookDetails({ id, setSelectId, reOpen, watched, setWatched }) {
         finallPage={finallPage}
         finallRating={finallRating}
         removeBook={(id) => {
-          setFinallRating((r) => r - watched.find((book) => book.id === id).rating);
+          setFinallRating(
+            (r) => r - watched.find((book) => book.id === id).rating
+          );
           setPage((p) => p - watched.find((book) => book.id === id).pages);
           setWatched((watched) => watched.filter((books) => books.id !== id));
         }}
@@ -97,7 +99,7 @@ function BookDetails({ id, setSelectId, reOpen, watched, setWatched }) {
   if (!data) return <ErrorComp err="Book not found" />;
 
   return (
-    <div className="flex flex-col relative">
+    <div className="flex flex-col relative ">
       <div className="text-white p-2 absolute drop-shadow-xl hover:-translate-x-0.5 shadow-white transition ease-in-out delay-150">
         <button onClick={() => setSelectId(0)}>
           <svg
@@ -109,16 +111,21 @@ function BookDetails({ id, setSelectId, reOpen, watched, setWatched }) {
           </svg>
         </button>
       </div>
-      <div className="flex gap-4 p-4 text-white">
+      <div className="flex gap-4 p-4 text-white max-sm:flex-col max-sm:gap-2">
         <img
           src={data.image}
           alt={data.title}
-          className="lg:h-48 lg:w-36 md:h-40 md:w-32"
+          className="lg:h-48 lg:w-36 md:h-40 md:w-32 max-sm:h-32 max-sm:w-24 max-sm:mx-auto"
         />
         <div className="flex flex-col gap-2">
           <div className="text-lg">{data.title}</div>
-          <div className="text-base">{data.authors}</div>
-          <div className="text-sm text-white">
+          <div className="text-base ">
+            Author:&nbsp;
+            {data.authors?.split(",")?.[0] +
+              ", " +
+              data.authors?.split(",")?.[1]}
+          </div>
+          <div className="text-sm text-white ">
             <table className="table-auto w-full">
               <tbody>
                 <tr>
@@ -138,7 +145,7 @@ function BookDetails({ id, setSelectId, reOpen, watched, setWatched }) {
           </div>
         </div>
       </div>
-      <div className="p-4 text-white">
+      <div className="p-4 text-white max-sm:hidden">
         {data.description ? data.description.split(".")[0] + "." : ""}
       </div>
       <div className="text-white bg-section-200 my-2 mx-6 py-3 px-4 rounded-md flex flex-col items-center">

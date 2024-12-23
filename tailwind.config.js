@@ -7,6 +7,7 @@ export default {
         lg: "1024px",
         xl: "1440px",
         md: "768px",
+        sm: "426px",
       },
       backdropBlur: {
         xs: "1px",

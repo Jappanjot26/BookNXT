@@ -1,41 +1,45 @@
-import React from "react"
+import React from "react";
 import { useState } from "react";
-import Rating from "../shared/Rating"
-import RateAndComment from "../ui/RateAndComment"
-export default function SavedComp({watched,singleSaveBook, back, setWatched})
-{
-      const [userRating, setUserRating] = useState(singleSaveBook.rating || 0);
-      const [userComment, setComment] = useState(singleSaveBook.comment);
-      const [showRNC, setShowRNC] = useState(false);
-      
-      function addWatch(book) {
-        setWatched((prevWatched) => {
-          const bookIndex = prevWatched.findIndex(
-            (watchedBook) => watchedBook.id === book.id
-          );
-          const updatedWatched = [...prevWatched];
-          updatedWatched[bookIndex] = {
-            ...updatedWatched[bookIndex],
-            rating: Number(userRating),
-            comment: userComment,
-          };
-          back();
-          return updatedWatched;
-        });
-      }
-      
-      
-      function handleRatingClick() {
-        setShowRNC(true);
-      }
-      function submitRNC() {
-          addWatch(singleSaveBook);
-        setShowRNC(false);
-      }
-    return(<>
-        <div className="flex flex-col relative">
+import Rating from "../shared/Rating";
+import RateAndComment from "../ui/RateAndComment";
+export default function SavedComp({
+  watched,
+  singleSaveBook,
+  back,
+  setWatched,
+}) {
+  const [userRating, setUserRating] = useState(singleSaveBook.rating || 0);
+  const [userComment, setComment] = useState(singleSaveBook.comment);
+  const [showRNC, setShowRNC] = useState(false);
+
+  function addWatch(book) {
+    setWatched((prevWatched) => {
+      const bookIndex = prevWatched.findIndex(
+        (watchedBook) => watchedBook.id === book.id
+      );
+      const updatedWatched = [...prevWatched];
+      updatedWatched[bookIndex] = {
+        ...updatedWatched[bookIndex],
+        rating: Number(userRating),
+        comment: userComment,
+      };
+      back();
+      return updatedWatched;
+    });
+  }
+
+  function handleRatingClick() {
+    setShowRNC(true);
+  }
+  function submitRNC() {
+    addWatch(singleSaveBook);
+    setShowRNC(false);
+  }
+  return (
+    <>
+      <div className="flex flex-col relative">
         <div className="text-white p-2 absolute drop-shadow-xl hover:-translate-x-0.5 shadow-white transition ease-in-out delay-150">
-        <button onClick={back}>
+          <button onClick={back}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 256 256"
@@ -45,15 +49,20 @@ export default function SavedComp({watched,singleSaveBook, back, setWatched})
             </svg>
           </button>
         </div>
-        <div className="flex gap-4 p-4 text-white">
+        <div className="flex gap-4 p-4 text-white max-sm:flex-col max-sm:gap-2">
           <img
             src={singleSaveBook.image}
             alt={singleSaveBook.title}
-            className="lg:h-48 lg:w-36 md:h-40 md:w-32"
+            className="lg:h-48 lg:w-36 md:h-40 md:w-32 max-sm:h-32 max-sm:w-24 max-sm:mx-auto"
           />
           <div className="flex flex-col gap-2">
             <div className="text-lg">{singleSaveBook.title}</div>
-            <div className="text-base">{singleSaveBook.authors}</div>
+            <div className="text-base">
+              Author:&nbsp;
+              {singleSaveBook.authors?.split(",")?.[0] +
+                ", " +
+                singleSaveBook.authors?.split(",")?.[1]}
+            </div>
             <div className="text-sm text-white">
               <table className="table-auto w-full">
                 <tbody>
@@ -74,8 +83,10 @@ export default function SavedComp({watched,singleSaveBook, back, setWatched})
             </div>
           </div>
         </div>
-        <div className="p-4 text-white">
-          {singleSaveBook.description ? singleSaveBook.description.split(".")[0] + "." : ""}
+        <div className="p-4 text-white max-sm:hidden">
+          {singleSaveBook.description
+            ? singleSaveBook.description.split(".")[0] + "."
+            : ""}
         </div>
         <div className="text-white bg-section-200 my-2 mx-6 py-3 px-4 rounded-md flex flex-col items-center">
           <Rating
@@ -127,6 +138,6 @@ export default function SavedComp({watched,singleSaveBook, back, setWatched})
           </div>
         </div>
       </div>
-    </>       
-    )
+    </>
+  );
 }

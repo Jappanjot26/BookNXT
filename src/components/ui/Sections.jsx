@@ -19,14 +19,14 @@ function Sections({ books, isLoading, error_message }) {
     testFub(id);
   }
 
-  function back(){
+  function back() {
     setSingleSaveBook(null);
   }
 
   return (
     <>
       <div className="flex p-4 justify-center gap-6 h-full xl:w-4/6 mt-5 md:w-full md:px-0 lg:px-20 xl:px-4">
-        <div className="bg-section-900 xl:w-full h-full max-h-[36rem] overflow-scroll rounded-md scroll-m-3 md:w-full">
+        <div className="bg-section-900 xl:w-full h-full max-h-[36rem] overflow-scroll rounded-md scroll-m-3 md:w-full max-sm:hidden">
           {isLoading && <Loading />}
           {!error_message ? (
             <BooksList
@@ -39,22 +39,22 @@ function Sections({ books, isLoading, error_message }) {
             <ErrorComp err={error_message}></ErrorComp>
           )}
         </div>
-        <div className="bg-section-900 xl:w-full h-full max-h-[36rem] rounded-md md:w-full">
+        <div className="bg-section-900 xl:w-full h-full max-h-[36rem] rounded-md md:w-full max-sm:w-full ">
           {singleSaveBook ? (
-             <SavedComp 
-             watched={watched}
-             setWatched = {setWatched} 
-             singleSaveBook={singleSaveBook}
-             back={back}
-             ></SavedComp>
+            <SavedComp
+              watched={watched}
+              setWatched={setWatched}
+              singleSaveBook={singleSaveBook}
+              back={back}
+            ></SavedComp>
           ) : (
             <BookDetails
-            id={selectId}
-            setSelectId={setSelectId}
-            reOpen={reOpen}
-            watched={watched}
-            setWatched={setWatched}
-          />
+              id={selectId}
+              setSelectId={setSelectId}
+              reOpen={reOpen}
+              watched={watched}
+              setWatched={setWatched}
+            />
           )}
         </div>
       </div>
