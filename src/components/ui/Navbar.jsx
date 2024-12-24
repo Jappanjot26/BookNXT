@@ -3,13 +3,13 @@ function Navbar({ query, setQuery, countBooks }) {
     <div className="flex p-4 px-5 items-center bg-nav-900 text-white justify-between rounded-lg w-full max-sm:flex-col max-sm:gap-4 max-sm:px-0 max-sm:rounded-none">
       <div className="flex gap-2 ">
         <div className="text-lg">📕</div>
-        <div className="self-center text-xl">BookNXT</div>
+        <div className="self-center text-xl max-sm:text-2xl">BookNXT</div>
       </div>
       <div className="flex items-center gap-3 max-sm:w-full">
         <input
           type="text"
           placeholder="Search"
-          className="border-0 p-2 px-4 rounded-lg focus:outline-none focus:-translate-y-0.5 transition ease-in-out delay-150 w-80 text-gray-800 bg-nav-700 text-white shadow-lg max-sm:w-full max-sm:mx-2 "
+          className="border-0 p-2 px-4 rounded-lg focus:outline-none focus:-translate-y-0.5 transition ease-in-out delay-150 w-80 text-gray-800 bg-nav-700 text-white shadow-lg max-sm:w-full max-sm:mx-2 max-sm:text-lg"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />

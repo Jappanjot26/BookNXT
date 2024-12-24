@@ -111,16 +111,16 @@ function BookDetails({ id, setSelectId, reOpen, watched, setWatched }) {
           </svg>
         </button>
       </div>
-      <div className="flex gap-4 p-4 text-white max-sm:flex-col max-sm:gap-2">
+      <div className="flex gap-4 p-4 text-white max-sm:items-center max-sm:gap-2">
         <img
           src={data.image}
           alt={data.title}
           className="lg:h-48 lg:w-36 md:h-40 md:w-32 max-sm:h-32 max-sm:w-24 max-sm:mx-auto"
         />
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 max-sm:gap-1">
           <div className="text-lg">{data.title}</div>
-          <div className="text-base ">
-            Author:&nbsp;
+          <div className="text-base max-sm:text-sm">
+            By:&nbsp;
             {data.authors?.split(",")?.[0] +
               ", " +
               data.authors?.split(",")?.[1]}
@@ -148,7 +148,7 @@ function BookDetails({ id, setSelectId, reOpen, watched, setWatched }) {
       <div className="p-4 text-white max-sm:hidden">
         {data.description ? data.description.split(".")[0] + "." : ""}
       </div>
-      <div className="text-white bg-section-200 my-2 mx-6 py-3 px-4 rounded-md flex flex-col items-center">
+      <div className="text-white bg-section-200 my-2 mx-6 py-3 px-4 rounded-md flex flex-col items-center max-sm:mx-auto max-sm:py-2 max-sm:px-10">
         {watchedBook ? (
           <div>
             <p>You have given this book a rating of {watchedBook.rating}</p>
@@ -173,18 +173,18 @@ function BookDetails({ id, setSelectId, reOpen, watched, setWatched }) {
             />
           </>
         )}
-        <div className="p-4 text-white flex justify-center gap-4">
+        <div className="p-4 text-white flex justify-center gap-4 max-sm:p-2">
           <a
             href={data.download}
             target="_blank"
             rel="noreferrer"
-            className="text-slate-900 border-2 border-white py-2 px-6 rounded-lg hover:bg-grey-200 bg-white hover:-translate-y-0.5 drop-shadow-xl transition ease-in-out delay-150 shadow-white"
+            className="text-slate-900 border-2 border-white py-2 px-6 rounded-lg hover:bg-grey-200 bg-white hover:-translate-y-0.5 drop-shadow-xl transition ease-in-out delay-150 shadow-white "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="currenColor"
               viewBox="0 0 256 256"
-              className="h-6 w-6 "
+              className="h-6 w-6"
             >
               <path d="M224,144v64a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V144a8,8,0,0,1,16,0v56H208V144a8,8,0,0,1,16,0Zm-101.66,5.66a8,8,0,0,0,11.32,0l40-40a8,8,0,0,0-11.32-11.32L136,124.69V32a8,8,0,0,0-16,0v92.69L93.66,98.34a8,8,0,0,0-11.32,11.32Z"></path>
             </svg>

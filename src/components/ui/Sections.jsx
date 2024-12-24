@@ -25,8 +25,8 @@ function Sections({ books, isLoading, error_message }) {
 
   return (
     <>
-      <div className="flex p-4 justify-center gap-6 h-full xl:w-4/6 mt-5 md:w-full md:px-0 lg:px-20 xl:px-4">
-        <div className="bg-section-900 xl:w-full h-full max-h-[36rem] overflow-scroll rounded-md scroll-m-3 md:w-full max-sm:hidden">
+      <div className="flex p-4 justify-center gap-6 h-full xl:w-4/6 mt-5 md:w-full md:px-0 lg:px-20 xl:px-4 max-sm:flex-col max-sm:gap-2 max-sm:px-1">
+        <div className="bg-section-900 xl:w-full h-full max-h-[36rem]  overflow-scroll rounded-md scroll-m-3 md:w-full max-sm:max-h-48 ">
           {isLoading && <Loading />}
           {!error_message ? (
             <BooksList
@@ -39,7 +39,7 @@ function Sections({ books, isLoading, error_message }) {
             <ErrorComp err={error_message}></ErrorComp>
           )}
         </div>
-        <div className="bg-section-900 xl:w-full h-full max-h-[36rem] rounded-md md:w-full max-sm:w-full ">
+        <div className="bg-section-900 xl:w-full h-full max-h-[36rem] rounded-md md:w-full max-sm:w-full max-sm:max-h-[20rem] overflow-scroll ">
           {singleSaveBook ? (
             <SavedComp
               watched={watched}

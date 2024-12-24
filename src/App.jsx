@@ -56,7 +56,7 @@ function App() {
   }, [query]);
 
   return (
-    <div className="h-screen w-screen bg-background p-5 flex flex-col items-center max-sm:p-0">
+    <div className="h-screen w-screen bg-background p-5 flex flex-col items-center max-sm:p-0 max-sm:overflow-scroll">
       <Navbar query={query} setQuery={setQuery} countBooks={countBooks} />
       <Sections
         books={books}
