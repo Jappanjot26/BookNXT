@@ -16,6 +16,10 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  saved: {
+    type: Array,
+    default: [],
+  },
 });
 
 const UserModel = mongoose.model("users", UserSchema);

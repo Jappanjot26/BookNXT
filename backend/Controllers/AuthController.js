@@ -29,6 +29,7 @@ const login = async (req, res) => {
       success: true,
       jwtToken,
       email,
+      saved: user.saved,
       name: user.name,
     });
   } catch (err) {
@@ -41,14 +42,14 @@ const login = async (req, res) => {
 
 const signup = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, saved } = req.body;
     const user = await UserModel.findOne({ email });
     if (user) {
       return res
         .status(409)
         .json({ message: "User already exist", success: false });
     }
-    const userModel = new UserModel({ name, email, password });
+    const userModel = new UserModel({ name, email, password, saved });
     userModel.password = await bcrypt.hash(password, 10);
     await userModel.save();
     res.status(201).json({ message: "Signup Successfully", success: true });

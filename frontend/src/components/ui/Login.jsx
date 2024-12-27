@@ -13,7 +13,6 @@ function Login() {
 
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
-    console.log(info);
   };
 
   const handleSubmit = async (e) => {
@@ -36,6 +35,7 @@ function Login() {
         handleSuccess(res.message);
         localStorage.setItem("jwtToken", res.jwtToken);
         localStorage.setItem("loggedInUser", res.email);
+        localStorage.setItem("saved", JSON.stringify(res.saved));
         setTimeout(() => {
           navigate("/home");
         }, 1000);

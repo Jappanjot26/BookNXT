@@ -8,10 +8,6 @@ require("./Models/db");
 
 const PORT = process.env.PORT || 5174;
 
-app.get("/ping", (_, res) => {
-  res.send("PONG");
-});
-
 app.use(bodyParser.json());
 app.use(cors());
 app.use("/auth", AuthRouter);
