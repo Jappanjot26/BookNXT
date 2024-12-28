@@ -10,8 +10,11 @@ function BookDetails({ id, setSelectId, reOpen, watched, setWatched }) {
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState(0);
   const [userComment, setComment] = useState("");
-  const [finallRating, setFinallRating] = useState(0);
-  const [finallPage, setPage] = useState(0);
+  const finallRating = watched.reduce(
+    (acc, book) => acc + Number(book.rating),
+    0
+  );
+  const finallPage = watched.reduce((acc, book) => acc + Number(book.pages), 0);
   const [showRNC, setShowRNC] = useState(false);
 
   const watchedBook = watched.find((book) => book.id === data.id); // Check if the book is already in the watched list
@@ -35,8 +38,6 @@ function BookDetails({ id, setSelectId, reOpen, watched, setWatched }) {
 
     if (!watchedBook) {
       setWatched((watched) => [...watched, newWatch]);
-      setPage(Number(data.pages) + Number(finallPage));
-      setFinallRating(Number(finallRating) + Number(userRating));
     }
     setComment("");
     setUserRating(0);
@@ -87,10 +88,6 @@ function BookDetails({ id, setSelectId, reOpen, watched, setWatched }) {
         finallPage={finallPage}
         finallRating={finallRating}
         removeBook={(id) => {
-          setFinallRating(
-            (r) => r - watched.find((book) => book.id === id).rating
-          );
-          setPage((p) => p - watched.find((book) => book.id === id).pages);
           setWatched((watched) => watched.filter((books) => books.id !== id));
         }}
         reOpen={reOpen}

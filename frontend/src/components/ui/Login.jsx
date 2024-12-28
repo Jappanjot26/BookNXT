@@ -33,7 +33,7 @@ function Login() {
       const res = await response.json();
       if (res.success) {
         handleSuccess(res.message);
-        localStorage.setItem("jwtToken", res.jwtToken);
+        localStorage.setItem("token", res.jwtToken);
         localStorage.setItem("loggedInUser", res.email);
         localStorage.setItem("saved", JSON.stringify(res.saved));
         setTimeout(() => {
