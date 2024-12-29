@@ -18,9 +18,12 @@ function Home() {
       try {
         setErrorMessage("");
         setIsLoading(true);
-        const res = await fetch(`https://www.dbooks.org/api/search/${query}`, {
-          signal: controller.signal,
-        });
+        const res = await fetch(
+          `https://www.dbooks.org/api/search/${query.split(" ").join("+")}`,
+          {
+            signal: controller.signal,
+          }
+        );
         if (!res.ok) {
           throw new Error("Something went wrong");
         }
