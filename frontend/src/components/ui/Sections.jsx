@@ -25,7 +25,7 @@ function Sections({ books, isLoading, error_message }) {
         localStorage.setItem("saved", JSON.stringify(watched));
         const res = await fetch(
           `${
-            process.env.REACT_APP_BACKEND_URL || "http://localhost:5174"
+            import.meta.env.VITE_BACKEND_URL || "http://localhost:5174"
           }/auth/save`,
           {
             method: "POST",
