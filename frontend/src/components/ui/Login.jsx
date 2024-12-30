@@ -23,7 +23,7 @@ function Login() {
     }
     try {
       const url = `${
-        process.env.BACKEND_URL || "http://localhost:5174"
+        process.env.REACT_APP_BACKEND_URL || "http://localhost:5174"
       }/auth/login`;
       const response = await fetch(url, {
         method: "POST",

@@ -22,7 +22,7 @@ export default function Register() {
     }
     try {
       const url = `${
-        process.env.BACKEND_URL || "http://localhost:5174"
+        process.env.REACT_APP_BACKEND_URL || "http://localhost:5174"
       }/auth/signup`;
       const response = await fetch(url, {
         method: "POST",
