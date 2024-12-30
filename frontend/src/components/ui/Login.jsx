@@ -22,7 +22,9 @@ function Login() {
       return handleError("Please fill all the fields");
     }
     try {
-      const url = `${process.env.BACKEND_URL}/auth/login`;
+      const url = `${
+        process.env.BACKEND_URL || "http://localhost:5174"
+      }/auth/login`;
       const response = await fetch(url, {
         method: "POST",
         headers: {

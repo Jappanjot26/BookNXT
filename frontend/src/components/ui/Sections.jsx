@@ -23,16 +23,19 @@ function Sections({ books, isLoading, error_message }) {
         JSON.stringify(watched) !== localStorage.getItem("saved")
       ) {
         localStorage.setItem("saved", JSON.stringify(watched));
-        const res = await fetch(`${process.env.BACKEND_URL}/auth/save`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: localStorage.getItem("loggedInUser"),
-            saved: watched,
-          }),
-        });
+        const res = await fetch(
+          `${process.env.BACKEND_URL || "http://localhost:5174"}/auth/save`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: localStorage.getItem("loggedInUser"),
+              saved: watched,
+            }),
+          }
+        );
         const data = await res.json();
       }
     }
