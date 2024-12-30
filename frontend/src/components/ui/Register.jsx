@@ -21,7 +21,7 @@ export default function Register() {
       return handleError("Please fill all the fields");
     }
     try {
-      const url = "http://localhost:5174/auth/signup";
+      const url = `${process.env.BACKEND_URL}/auth/signup`;
       const response = await fetch(url, {
         method: "POST",
         headers: {

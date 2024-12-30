@@ -23,7 +23,7 @@ function Sections({ books, isLoading, error_message }) {
         JSON.stringify(watched) !== localStorage.getItem("saved")
       ) {
         localStorage.setItem("saved", JSON.stringify(watched));
-        const res = await fetch("http://localhost:5174/auth/save", {
+        const res = await fetch(`${process.env.BACKEND_URL}/auth/save`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
