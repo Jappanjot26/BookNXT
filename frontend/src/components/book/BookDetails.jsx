@@ -148,8 +148,10 @@ function BookDetails({ id, setSelectId, reOpen, watched, setWatched }) {
       <div className="text-white bg-section-200 my-2 mx-6 py-3 px-4 rounded-md flex flex-col items-center max-sm:mx-auto max-sm:py-2 max-sm:px-10">
         {watchedBook ? (
           <div>
-            <p>You have given this book a rating of {watchedBook.rating}</p>
-            <p>Your comment: {watchedBook.comment}</p>
+            <p>
+              Your Rating is {" " + watchedBook.rating} and comment is
+              {" " + watchedBook.comment + "."}
+            </p>
           </div>
         ) : (
           <>
