@@ -62,15 +62,15 @@ Ensure you have the following installed on your system:
    ```bash
    npm install
    ```
-3. Update `.env` file in the backend folder and configure it as follows:
+3. Create `.env` file in the backend folder and configure it as follows:
    ```bash
    PORT=YOUR_PORT_NUMBER
    MONGO_URL=YOUR_MONGO_CONNECTION_STRING
    JWT_SECRET=YOUR_SECRET_KEY
    ```
-5. Start the backend server:
+4. Start the backend server:
    ```bash
-   npm start
+   npm run dev
    ```
 
 ---
@@ -87,13 +87,15 @@ Ensure you have the following installed on your system:
 ## Folder Details
 
 - **Frontend**
+
   - Built with React.js.
   - Implements responsive design using Tailwind CSS.
   - Key routes include `/home`, `/login`, `/register`.
 
 - **Backend**
   - Developed with Express.js.
-  - Includes authentication endpoints such as `/auth/login` and `/auth/signup`.
+  - Includes authentication endpoints as `/auth/login` and `/auth/signup`.
+  - Include data updation endpoint as `/auth/save`.
   - Middleware for input validation, error handling, and authentication.
 
 ---
@@ -122,4 +124,3 @@ This project is licensed under the [MIT License](LICENSE).
 ---
 
 Thank you for checking out BookNXT and Happy reading! 📚
-
